@@ -1,12 +1,7 @@
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn compute_sum(length: i32) -> i32 {
-    let array: Vec<i32> = (1..=length).collect();
-    return sum(&array);
-}
-
-
-fn sum(array: &Vec<i32>) -> i32 {
-    array.iter().sum()
+pub fn compute_sum(length: u64) -> u64 {
+    let array: Vec<u64> = (1..=length).collect();
+    return array.iter().copied().fold(0, |acc, current| acc.wrapping_add(current));
 }
